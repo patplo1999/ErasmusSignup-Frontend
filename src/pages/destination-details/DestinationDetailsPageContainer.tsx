@@ -1,8 +1,6 @@
 // React
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-// Redux
-import { useAppDispatch } from "storage/redux/hooks";
 // API
 import { createOpinion, getOpinion } from "api/opinionApi";
 import { getDestinationDetails } from "api/universityApi";
@@ -10,11 +8,9 @@ import { getDestinationDetails } from "api/universityApi";
 import { OpinionResponse } from "models/Opinion";
 import DestinationDetailsPage from "./DestinationDetailsPage";
 import GetDestinationDetails from "api/DTOs/GET/GetDestinationDetails";
-import { changeObservedStatus } from "storage/redux/universitySlice";
 
 const DestinationDetailsPageContainer = () => {
   const { id } = useParams();
-  const dispatch = useAppDispatch();
   const [detailsData, setDetailsData] = useState<GetDestinationDetails | undefined>(undefined);
   const [opinions, setOpinions] = useState<OpinionResponse | undefined>(undefined);
   const [selectedDestId, setSelectedDestId] = useState<number>(0);

@@ -1,7 +1,7 @@
 // Ant Design
 import { Button, InputNumber, List } from "antd";
 import Input from "antd/lib/input/Input";
-import { EditFilled, PlusOutlined } from '@ant-design/icons';
+import { EditFilled} from '@ant-design/icons';
 // Components
 import { Plan } from "models/Plan";
 // Styles

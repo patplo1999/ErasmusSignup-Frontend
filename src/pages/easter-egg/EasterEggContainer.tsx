@@ -1,7 +1,6 @@
 import { Buffer } from "buffer";
 // React
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 // Components
 import EasterEgg from "./EasterEgg";
 const EasterEggContainer = () => {

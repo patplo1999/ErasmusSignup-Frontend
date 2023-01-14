@@ -84,7 +84,7 @@ const loginSlice = createSlice({
       .addCase(logOut.pending, state => {
         state.status = RequestStatus.loading;
       })
-      .addCase(logOut.fulfilled, (state, action) => {
+      .addCase(logOut.fulfilled, (state) => {
         state.status = RequestStatus.idle;
       })
       .addCase(logOut.rejected, state => {

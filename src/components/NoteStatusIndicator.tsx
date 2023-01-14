@@ -1,11 +1,10 @@
 import { ContainerFilled, ContainerOutlined } from "@ant-design/icons";
 
 interface Props {
-  relatedId: number;
   active: boolean;
 }
 
-const NoteStatusIndicator = ({ relatedId, active }: Props) => {
+const NoteStatusIndicator = ({active }: Props) => {
   return active ? (
     <ContainerFilled
       className="status-indicator"

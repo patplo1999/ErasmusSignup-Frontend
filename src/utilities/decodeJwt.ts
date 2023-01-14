@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Buffer } from "buffer";
 
 const decodeJwt = (token: string): any => {

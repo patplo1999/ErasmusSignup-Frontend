@@ -115,7 +115,7 @@ const DestinationDetailsPage = ({
           </div>
 
           <div className="icon-space">
-            <NoteStatusIndicator relatedId={specialty.id} active={specialty.isNote} />
+            <NoteStatusIndicator active={specialty.isNote} />
             <FavoriteStatusIndicator
               onClick={event => {
                 event.stopPropagation();

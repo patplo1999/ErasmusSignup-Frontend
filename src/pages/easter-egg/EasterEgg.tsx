@@ -1,8 +1,5 @@
-
 // Styles
 import "./EasterEgg.scss";
-// Assets
-import egg from "assets/egg.png"
 
 
 interface Props {
