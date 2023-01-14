@@ -1,0 +1,157 @@
+#plan-page-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+
+    #plan-list-panel {
+        display: flex;
+        flex-direction: column;
+        width: 20rem;
+
+        #plan-list {
+            flex: 1;
+        }
+
+        #create-new-plan-button {
+            margin: 0;
+            padding: 0.5rem;
+            border-radius: 1rem;
+            font-weight: bold;
+        }
+    }
+
+    #plan-subjects-panel {
+        flex: 1;
+        
+        #select-plan-info {    
+            height: 100%;
+            display: flex;
+            align-items:center;
+            justify-content:center;
+
+            p {
+                font-size: 1.5rem;
+            }
+        }
+
+        #plan-headder {
+            display: block;
+            text-align: right;
+
+            .plan-name {
+                text-align: left;
+                font-size: 1.4rem;
+            }
+
+            .user-full-name {
+                text-align: left;
+                font-size: 1rem;
+
+                span {
+                    font-weight: bold;
+                }
+            }
+            
+            .plan-name-input {
+                font-size: 1.4rem;
+            }
+            
+            .plan-name-input input:not(:focus) {
+                // background-color: white;
+                background-color: transparent;
+                border-color: transparent;
+            }
+            .plan-name-input:has(input:not(:focus)) {
+                // background-color: white;
+                background-color: transparent;
+                border-color: transparent;
+            }
+
+        }
+        
+        .plan-buttons-panel {
+            width: 100%;
+            margin-top: 0.5rem;
+            display: flex;
+            gap: 0.5rem;
+            text-align: right;
+            
+            :first-child {
+                margin-left: auto;
+            }
+
+            .accept-button {
+                background-color: #236d23;
+            }
+
+
+            .decline-button {
+                background-color: #712a2a;
+            }
+
+
+            // .save-button {
+            //     //
+            // }
+
+
+            .send-button {
+                background-color: #236d23;
+            }
+
+            .publish-button:not([disabled]) {
+                background-color: #236d23;
+            }
+
+            .delete-button {
+                background-color: #712a2a;
+            }
+        }
+        
+        .plan-subject-row {
+            display:block;
+            
+            .plan-subject-home {
+                width: 100%;
+                font-weight: bold;
+                margin: 0.5rem;
+                // font-size: 1rem;
+                // flex:1;
+
+                span {
+                    font-weight: normal;
+                }
+                
+            }
+
+            .plan-subject-destination {
+                // flex: 1;
+                display: flex;
+                text-align: right;
+                justify-content:center;
+                gap: 0.25rem;
+
+                .subject-text-input {
+                    flex: 1;
+                }
+            }
+            input[disabled] {
+                background-color: #dfdfdf;
+                color: black;
+            }
+        }
+    }
+}
+
+input::before {
+    content: "ddd";
+}
+
+
+
+
+
+
+

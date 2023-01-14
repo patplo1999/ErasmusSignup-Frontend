@@ -1,0 +1,38 @@
+.note-view-page {
+  position: relative;
+  margin: auto;
+  padding: 2rem 1rem;
+  max-width: 940px;
+
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+
+  .content {
+    flex-grow: 1;
+    min-height: 500px;
+  }
+
+  .utility-buttons-space{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .button {
+    background-color: #cccccc;
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    svg{
+      font-size: 2.5rem;
+    }
+  }
+}

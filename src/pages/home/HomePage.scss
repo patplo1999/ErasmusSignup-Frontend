@@ -1,0 +1,67 @@
+.home-page {
+  position: relative;
+  top: -10px;
+
+  .jumbotron {
+    width: 100%;
+    height: 700px;
+    
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.53), rgba(0, 0, 0, 0.53)), url(https://erasmus.adiyaman.edu.tr/files/erasmus.adiyaman.edu.tr/tr/duyurular/2022/01/26/2021-2022-erasmus-programi-ogrenci-basvuru-tarihleri-25-subat/fotog.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .text{
+      width: 80%;
+      color: rgba(245, 245, 245, 0.801);
+      font-size: 3rem;
+      word-wrap: normal;
+      text-align: center;
+    }
+  }
+
+  .cards {
+    position: relative;
+    top: -120px;
+
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 350px));
+    gap: 10%;
+    padding: auto;
+    font-size: 1.3rem;
+    text-align: center;
+
+    .image-space{
+      width: 60%;
+      margin-bottom: 2rem;
+
+      img{
+        width: 100%;
+      }
+    }
+  }
+
+  .button-space{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+    
+    .login-button {
+      border: 1px dashed #188fffab;
+      border-radius: 10px;
+      padding: 0.5rem 1.5rem;
+      font-size: 1.5rem;
+
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.123);
+      }
+    }
+  }
+}
