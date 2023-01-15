@@ -10,7 +10,7 @@ import PostPlanNote from "./DTOs/POST/PostPlanNote";
 import PostSpecialityHighlight from "./DTOs/POST/PostSpecialityHighlight";
 import PostSpecialityNote from "./DTOs/POST/PostSpecialityNote";
 
-const noteApiBaseUrl = "https://localhost:7169";
+const noteApiBaseUrl = "https://noteapiservice.azure-api.net/";
 
 /* ============================== COMMON ============================== */
 export const getCommonNotes = async (): Promise<CommonNote[]> => {

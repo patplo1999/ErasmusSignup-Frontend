@@ -3,7 +3,7 @@ import { Plan, PlanSend } from "models/Plan";
 import { UserPlan } from "models/UserSubject";
 
 
-const planApiBaseUrl = "https://localhost:7084";
+const planApiBaseUrl = "https://planapiservice.azure-api.net/";
 
 export const getUserPlan = async (): Promise<UserPlan> => {
   return await axios

@@ -1,7 +1,7 @@
 import { default as axios } from "lib/axios";
 import { OpinionPOST, OpinionResponse } from "models/Opinion";
 
-const opinionApiBaseUrl = "https://localhost:7128";
+const opinionApiBaseUrl = "https://opinionapiservice.azure-api.net/";
 /* opinion */
 export const getOpinion = async (PageSize: string|number, Page: string|number, SpecId: string|number): Promise<OpinionResponse> => {
   return await axios
