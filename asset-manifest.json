@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/ErazmusSingApp-Deploy/static/css/main.019a8848.css",
+    "main.js": "/ErazmusSingApp-Deploy/static/js/main.0cae06f8.js",
+    "static/media/globe.svg": "/ErazmusSingApp-Deploy/static/media/globe.d713dcc90ba62fb724691fc59f4098a6.svg",
+    "static/media/trophy.svg": "/ErazmusSingApp-Deploy/static/media/trophy.95091886291d9c2bd7846ef3f42975f6.svg",
+    "static/media/erasmus.webp": "/ErazmusSingApp-Deploy/static/media/erasmus.bdef8186ddc09777793a.webp",
+    "static/media/education.svg": "/ErazmusSingApp-Deploy/static/media/education.82fc4c09a901ff5475fddde209e2380a.svg",
+    "static/media/pwr.webp": "/ErazmusSingApp-Deploy/static/media/pwr.6d06b310610974899f41.webp",
+    "index.html": "/ErazmusSingApp-Deploy/index.html",
+    "static/media/sweep.svg": "/ErazmusSingApp-Deploy/static/media/sweep.caa3f581ff984d2af1d8b4f0c2367d2c.svg",
+    "static/media/arrowBack.svg": "/ErazmusSingApp-Deploy/static/media/arrowBack.f52491a61ed02347c69a5f47437171ef.svg",
+    "main.019a8848.css.map": "/ErazmusSingApp-Deploy/static/css/main.019a8848.css.map",
+    "main.0cae06f8.js.map": "/ErazmusSingApp-Deploy/static/js/main.0cae06f8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.019a8848.css",
+    "static/js/main.0cae06f8.js"
+  ]
+}
