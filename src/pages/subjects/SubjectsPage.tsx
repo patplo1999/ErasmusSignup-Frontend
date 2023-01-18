@@ -7,7 +7,7 @@ import { UserSubject } from "models/UserSubject";
 import "./SubjectsPage.scss";
 
 interface Props {
-  subjects: Map<number, UserSubject>;
+  subjects: Map<number, UserSubject>|undefined;
   isPlanEdited: boolean;
   loading: { subjects: boolean; };
   saveUserPlan: () => void
@@ -35,7 +35,7 @@ const SubjectsPage = ({ subjects, isPlanEdited, loading, saveUserPlan, addSubjec
         </div>
 
         <List
-          dataSource={Array.from(subjects.values())}
+          dataSource={Array.from( subjects === undefined ? [] : subjects.values())}
           loading={loading.subjects}
           renderItem={item => (
             <List.Item className="plan-subject-row" key={item.id}>

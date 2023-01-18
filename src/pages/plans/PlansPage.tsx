@@ -9,7 +9,7 @@ import "./PlansPage.scss";
 import React from "react";
 
 interface Props {
-  plans: Map<number, Plan>;
+  plans: Map<number, Plan>|undefined;
   newPlan: Plan;
   currentPlanId: number|undefined;
   isEdited: Map<number, boolean>;
@@ -41,7 +41,7 @@ const PlansPage = ({
 }: Props) => {
   const currentPlan: Plan|undefined = currentPlanId === -1
       ? newPlan
-      : ( currentPlanId === undefined ? undefined : plans.get(currentPlanId));
+      : ( currentPlanId === undefined || plans === undefined ? undefined : plans.get(currentPlanId));
   
   return (
     <div id="plan-page-container">
@@ -49,7 +49,7 @@ const PlansPage = ({
         <h1>Plans:</h1>
         <List
           id="plan-list"
-          dataSource={Array.from(plans.values())}
+          dataSource={Array.from( plans !== undefined ? plans.values() : [])}
           loading={loading.plans}
           renderItem={item => (
             <List.Item
@@ -73,7 +73,7 @@ const PlansPage = ({
         }
       </div>
       <div id="plan-subjects-panel" className="block">
-        {currentPlan ? (
+        {currentPlan !== undefined ? (
           <div id="plan" className="block ">
             <div id="plan-headder">
               {isCoordinator ?
