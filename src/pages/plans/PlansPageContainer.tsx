@@ -12,7 +12,7 @@ interface Props {
 
 const PlansPageContainer = ({ isCoordinator }: Props) => {
   const { id } = useParams();
-  const [plans, setPlans] = useState<Map<number, Plan>>(new Map());
+  const [plans, setPlans] = useState<Map<number, Plan>|undefined>(undefined);
   const [currentPlanId, setCurrentPlanId] = useState<number | undefined>(undefined);
   const [isEdited, setIsEdited] = useState<Map<number, boolean>>(new Map());
   const [newPlan, setNewPlan] = useState<Plan>({
@@ -28,11 +28,11 @@ const PlansPageContainer = ({ isCoordinator }: Props) => {
   });
 
   useEffect(() => {
-    if (plans.size === 0) {
+    if (plans === undefined) {
       fetchPlans();
     }
     if (currentPlanId === undefined) {
-      const idParsed: number|undefined = (id ?
+      const idParsed: number|undefined = (id !== undefined ?
         (id === "new" ?
           -1
         :
@@ -51,11 +51,11 @@ const PlansPageContainer = ({ isCoordinator }: Props) => {
   const fetchPlans = async () => {
     setLoading({ ...loading, plans: true });
     setLoading({ ...loading, subjects: true });
-    const newPlans = await getPlans();
+    const newPlansState = await getPlans();
     setPlans(() => {
       const newState: Map<number, Plan> = new Map<number, Plan>()
-      for (let i = 0; i < newPlans.length; i++) {
-        newState.set(newPlans[i].id, newPlans[i])
+      for (let i = 0; i < newPlansState.length; i++) {
+        newState.set(newPlansState[i].id, newPlansState[i])
       }
       return newState;
     });
@@ -81,7 +81,7 @@ const PlansPageContainer = ({ isCoordinator }: Props) => {
 
   const switchCurrentPlan = (id: number|undefined) => {
     setCurrentPlanId(id);
-    if(id){
+    if(id !== undefined){
       window.history.replaceState({}, "", (isCoordinator ? "/plans/coordinator/" : "/plans/") + (id == -1 ? "new" : id));
     }
   }
@@ -95,7 +95,7 @@ const PlansPageContainer = ({ isCoordinator }: Props) => {
   }
 
   const changeCurrentPlanName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (currentPlanId) {
+    if (currentPlanId !== undefined) {
       setIsEditedTo(true, currentPlanId);
       if (currentPlanId === -1) {
         setNewPlan(prevState => {
@@ -115,7 +115,7 @@ const PlansPageContainer = ({ isCoordinator }: Props) => {
   }
 
   const changeSubjectName = (event: React.ChangeEvent<HTMLInputElement>, id: number) => {
-    if (currentPlanId) {
+    if (currentPlanId !== undefined) {
       setIsEditedTo(true, currentPlanId);
       if (currentPlanId === -1) {
         setNewPlan(prevState => {
@@ -136,7 +136,7 @@ const PlansPageContainer = ({ isCoordinator }: Props) => {
   }
 
   const changeSubjectEcts = (event: number | null, id: number) => {
-    if (currentPlanId && event) {
+    if (currentPlanId !== undefined && event !== null) {
       setIsEditedTo(true, currentPlanId);
       if (currentPlanId === -1) {
         setNewPlan(prevState => {
@@ -156,15 +156,16 @@ const PlansPageContainer = ({ isCoordinator }: Props) => {
   }
 
   const publishPlan = () => {
-    if (currentPlanId && currentPlanId === -1 && newPlan!.subjects) {
+    if (currentPlanId !== undefined && currentPlanId === -1 && newPlan!.subjects) {
       const planSend: PlanSend = convertPlanToSend(newPlan);
       postPlan(planSend)
         .then(response => {
           // const planToAdd = { ...newPlan };
           // planToAdd.id = response.data as number;
-          const newPlans: Map<number, Plan> = new Map(plans);
-          newPlans.set(response.data as number, newPlan)
-          setPlans(newPlans);
+          const newPlansState: Map<number, Plan> = new Map<number, Plan>(plans);
+          newPlansState.set(response.data as number,  structuredClone(newPlan) )
+          newPlansState.get(response.data as number)!.id = response.data as number;
+          setPlans(newPlansState);
           switchCurrentPlan(response.data as number);
           setNewPlan(prevState => {
             const newState = { ...prevState, name: "" }
@@ -179,7 +180,7 @@ const PlansPageContainer = ({ isCoordinator }: Props) => {
   }
 
   const savePlanChanges = () => {
-    if(currentPlanId) {
+    if(currentPlanId !== undefined && plans !== undefined) {
       const planSend: PlanSend = convertPlanToSend(plans.get(currentPlanId)!);
       putPlan(planSend, currentPlanId)
         .then(() => {
@@ -193,7 +194,7 @@ const PlansPageContainer = ({ isCoordinator }: Props) => {
   // }
 
   const deletePlanWrap = () => {
-    if(currentPlanId){
+    if(currentPlanId !== undefined){
       deletePlan(currentPlanId).then(() => {
         setPlans(prevState => {
           const newState: Map<number, Plan> = new Map(prevState);

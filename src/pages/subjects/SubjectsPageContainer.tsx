@@ -6,14 +6,15 @@ import SubjectsPage from "./SubjectsPage";
 import { getUserPlan, postUserPlan } from "api/planApi";
 
 const SubjectsPageContainer = () => {
-  const [subjects, setSubjects] = useState<Map<number, UserSubject>>(new Map());
+  const [subjects, setSubjects] = useState<Map<number, UserSubject>|undefined>(undefined);
   const [isPlanEdited, setIsPlanEdited] = useState<boolean>(false);
   const [loading, setLoading] = useState<{ subjects: boolean; }>({
     subjects: false,
   });
+  const [subjectsAdded, setSubjectsAdded] = useState<number>(0);
 
   useEffect(() => {
-    if (subjects.size === 0) {
+    if (subjects === undefined) {
       fetchUserPlan();
     }
 
@@ -33,27 +34,30 @@ const SubjectsPageContainer = () => {
   };
 
   const saveUserPlan = () => {
-    const userPlan: UserPlan  = {subjects: Array.from(subjects.values())};
-    for(let i = 0; i < userPlan.subjects.length; i++){
-      if(userPlan.subjects[i].id < 0){
-        userPlan.subjects[i].id = 0;
-      }
+    if(subjects !== undefined){
+      const userPlan: UserPlan  = {subjects: Array.from(subjects.values())};
+      // for(let i = 0; i < userPlan.subjects.length; i++){
+      //   if(userPlan.subjects[i].id < 0){
+      //     userPlan.subjects[i].id = 0;
+      //   }
+      // }
+      postUserPlan(userPlan).then(()=>{
+        setIsPlanEdited(false);
+      });
     }
-    postUserPlan(userPlan).then(()=>{
-      setIsPlanEdited(false);
-    });
   }
 
   const addSubject = () => {
     setSubjects(prevState => {
       const newState: Map<number, UserSubject> = new Map(prevState);
-      newState.set(-(prevState.size), {
-        id: -(prevState.size),
+      newState.set(-(subjectsAdded + 1), {
+        id: -(subjectsAdded + 1),
         name: "",
         ects: 0,
       })
       return newState;
     });
+    setSubjectsAdded(subjectsAdded + 1);
     setIsPlanEdited(true);
   }
 
@@ -69,7 +73,9 @@ const SubjectsPageContainer = () => {
   const changeSubjectName = (event: React.ChangeEvent<HTMLInputElement>, id: number) => {
     setSubjects(prevState => {
       const newState: Map<number, UserSubject> = new Map(prevState);
-      newState.get(id)!.name = event.target.value;
+      if(newState.has(id)){
+        newState.get(id)!.name = event.target.value;
+      }
       return newState;
     });
     setIsPlanEdited(true);
@@ -78,7 +84,9 @@ const SubjectsPageContainer = () => {
   const changeEcts = (event: number|null, id: number) => {
     setSubjects(prevState => {
       const newState: Map<number, UserSubject> = new Map(prevState);
-      newState.get(id)!.ects = event!;
+      if(newState.has(id)){
+        newState.get(id)!.ects = event!;
+      }
       return newState;
     });
     setIsPlanEdited(true);
